@@ -20,4 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  title: "Where to eat in the UA"
+  link_admin: "Cooffe shop access"
+
+  # Para las vistas de devise
+
+  devise:
+    shared:
+      link:
+        log_in: "Log in"
+        sign_up: "Sign up"
+        forgot_password: "Forgot your password?"
+        confirmation_instructions: "Didn't receive confirmation instructions?"
+    sessions:
+      new:
+        title: "Log in"
+        btn_log_in: "log in"
