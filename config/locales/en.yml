@@ -32,6 +32,8 @@ en:
         sign_up: "Sign up"
         forgot_password: "Forgot your password?"
         confirmation_instructions: "Didn't receive confirmation instructions?"
+        unlock_instructions: "Didn't receive unlock instructions?"
+        sign_in_with: "Sign in with %{provider}"
     sessions:
       new:
         title: "Log in"

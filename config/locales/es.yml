@@ -1,6 +1,7 @@
 es:
   title: "Comer en la UA"
   link_admin: "Acceso cafeterias"
+
   # Para las vistas de devise
 
   devise:
@@ -10,6 +11,8 @@ es:
         sign_up: "Regístrate"
         forgot_password: "¿Ha olvidado la contraseña?"
         confirmation_instructions: "¿No ha recibido las instrucciones de confirmación?"
+        unlock_instructions: "¿No ha recibido las instrucciones de desbloqueo?"
+        sign_in_with: "Identificarse mediante %{provider}"
     sessions:
       new:
         title: "Identifícate"
