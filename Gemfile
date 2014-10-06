@@ -32,3 +32,5 @@ end
 group :production do
   gem 'mysql2'
 end
+
+gem 'libv8', '=3.16.14.3'
