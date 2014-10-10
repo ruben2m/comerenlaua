@@ -12,7 +12,7 @@ es:
     mailer:
       unlock_instructions:
         wellcome: "Hola"
-        text: "Tu cuenta ha sido bloqueada por un excisivo número de intentos erróneos de acceso"
+        text: "Tu cuenta ha sido bloqueada por un excesivo número de intentos erróneos de acceso"
         click_to_unlock: "Haz click en el siguiente enlace para desbloquear tu cuenta"
         unlock: "Desbloquear mi cuenta"
 
@@ -80,6 +80,7 @@ es:
       user:
         email: "Correo electrónico"
         password: "Contraseña"
+        password_confirmation: "Repetir contraseña"
         remember_me: "No cerrar sesión"
 
 
