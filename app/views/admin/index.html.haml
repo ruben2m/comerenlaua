@@ -1,25 +1,21 @@
 =link_to t('.request_new_shop'), action: "select_shop"
 %h3=t('.title')
 %h4=@shop.title
-%p.menu-semanal
-  =form_for @day do |f|
-    =f.select :day_of_week, options_for_select(@day_names)
-    -# Muestro todos los menus, sean o no del dia, marcando
-      los que son del día
-    -@menus.each do |m|
-      .menu
-        -checked = !@day.menus.where(id: m.id).empty?
-        =check_box_tag "menu_"+m.id.to_s, "1", checked
-        =label_tag "menu_"+m.id.to_s, m.name
-        %ul
-          -m.courses.each do |c|
-            %li=c.name+': '+c.text
-          %li=t('.dessert')+': '+m.desserts
-          %li=t('.drink')+': '+m.drinks
-          -if m.bread_included
-            %li=t('.bread')
-        =t('.options')+':'
-        %ul
-          -m.menukinds.each do |mk|
-            %li=mk.text+': '+mk.price.to_s+'€'
-        =button_tag t('common.modify'), type: 'button'
+=select_tag :day_of_week, options_for_select(@day_names)
+#edit_day
+  = render :partial => 'menus'
+
+:javascript
+  $('#day_of_week').change(function(){
+    $('#edit_day').html('#{image_tag "loading.gif"}');
+    $.ajax({
+      url: '/admin/index',
+      type: 'GET',
+      data: { "id" : #{@shop.id}, "day" : $('#day_of_week').val() },
+      dataType: 'script',
+      error: function() {
+        $('#edit_day').html("Error"); // TODO catch
+      }
+    })
+  });
+

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
     resources :day
 
-    get 'admin/index(:id)' => "admin#index"
+    get 'admin/index(/:id(/:day))' => "admin#index"
+    post '/admin/addmenu(/:day(/:menu))' => "admin#add_menu"
+    post '/admin/deletemenu(/:day(/:menu))' => "admin#delete_menu"
     get '/admin' => "admin#index"
 
     get 'admin/select_shop'

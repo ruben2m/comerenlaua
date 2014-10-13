@@ -1,0 +1,47 @@
+=form_for @day do |f|
+  -# Muestro todos los menus, sean o no del dia, marcando
+    los que son del día
+  -@menus.each do |m|
+    .menu
+      -checked = !@day.menus.where(id: m.id).empty?
+      =check_box_tag "menu_"+m.id.to_s, "1", checked, class: 'menu_check'
+      =label_tag "menu_"+m.id.to_s, m.name
+      %ul
+        -m.courses.each do |c|
+          %li=c.name+': '+c.text
+        %li=t('.dessert')+': '+m.desserts
+        %li=t('.drink')+': '+m.drinks
+        -if m.bread_included
+          %li=t('.bread')
+      =t('.options')+':'
+      %ul
+        -m.menukinds.each do |mk|
+          %li=mk.text+': '+mk.price.to_s+'€'
+      =button_tag t('common.modify'), type: 'button'
+
+:javascript
+  $('.menu_check').click(function(){
+    if($(this).prop('checked')==true){
+      // add menu
+      $.ajax({
+        url: '/admin/addmenu',
+        type: 'POST',
+        data: { "day": "#{@day.id}", "menu" : $(this).attr('id') },
+        dataType: 'script',
+        error: function() {
+          $('#edit_day').html('Error checkbox'); // TODO catch
+        }
+      })
+    }else{
+      // remove menu
+      $.ajax({
+        url: '/admin/deletemenu',
+        type: 'POST',
+        data: { "day": "#{@day.id}", "menu" : $(this).attr('id') },
+        dataType: 'script',
+        error: function() {
+          $('#edit_day').html('Error checkbox'); // TODO catch
+        }
+      })
+    }
+  });
