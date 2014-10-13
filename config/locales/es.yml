@@ -3,11 +3,18 @@ es:
   title: "Comer en la UA"
   link_admin: "Acceso cafeterías"
 
+  common:
+    modify: "Modificar"
+
 
   admin:
     index:
       title: "Gestión de menú semanal"
       request_new_shop: "Solicitar gestionar otra cafetería"
+      dessert: "Postre"
+      drink: "Bebida"
+      bread: "Pan"
+      options: "Opciones"
     select_shop:
       title: "Petición de gestión de Cafetería"
     choose_shop:

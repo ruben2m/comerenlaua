@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OptionTest < ActiveSupport::TestCase
+class DaysMenuTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

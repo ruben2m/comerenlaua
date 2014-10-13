@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /es|en/ do
     devise_for :users
 
+    resources :day
+
     get 'admin/index(:id)' => "admin#index"
     get '/admin' => "admin#index"
 

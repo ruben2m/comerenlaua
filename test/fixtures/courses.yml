@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  kind: 1
+  menu_id: 
 
 two:
   name: MyString
-  kind: 1
+  menu_id: 

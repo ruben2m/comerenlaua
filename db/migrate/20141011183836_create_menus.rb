@@ -1,12 +1,12 @@
-class CreateMenu < ActiveRecord::Migration
+class CreateMenus < ActiveRecord::Migration
   def change
     create_table :menus do |t|
       t.string :name
+      t.string :drinks
+      t.string :desserts
       t.boolean :bread_included
       t.string :text
       t.belongs_to :shop, index: true
-
-      t.index [:id, :day_of_week], unique: true
 
       t.timestamps
     end
