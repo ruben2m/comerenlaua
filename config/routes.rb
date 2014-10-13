@@ -3,8 +3,12 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /es|en/ do
     devise_for :users
 
-    get 'admin/index'
+    get 'admin/index(:id)' => "admin#index"
     get '/admin' => "admin#index"
+
+    get 'admin/select_shop'
+    get 'admin/request_shop/:id' => 'admin#request_shop'
+    get 'admin/choose_shop' => 'admin#choose_shop'
 
     root to: 'main#index'
 

@@ -1,6 +1,20 @@
+#encoding: UTF-8
 es:
   title: "Comer en la UA"
   link_admin: "Acceso cafeterías"
+
+
+  admin:
+    index:
+      title: "Gestión de menú semanal"
+      request_new_shop: "Solicitar gestionar otra cafetería"
+    select_shop:
+      title: "Petición de gestión de Cafetería"
+    choose_shop:
+      title: "Selecciona Cafetería a gestionar"
+    request_shop:
+      request_shop_sended: "Se ha enviado la petición de gestionar la cafetería %{shop}. Recibirá un email cuando el Administrador le acredite"
+      request_shop_error: "No se ha podido enviar la petición. 'Código incorrecto'"
 
   # Para las vistas de devise
 

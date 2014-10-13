@@ -1,2 +1,13 @@
-%h1 Admin#index
-%p Find me in app/views/admin/index.html.haml
+=link_to t('.request_new_shop'), action: "select_shop"
+%h3=t('.title')
+%h4=@shop.title
+%p.menu-semanal
+  =form_for @menu do |f|
+    =f.select :day_of_week, options_for_select(@day_names)
+      -# Muestro todos los menus, sean o no del dia, marcando
+        los que son del día
+      -@menus.each do |m|
+        -checked = not @day.menus.where(id: m.id).empty?
+        =f.check_box m.title, checked: checked
+
+

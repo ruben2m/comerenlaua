@@ -23,6 +23,11 @@ en:
   title: "Where to eat in the UA"
   link_admin: "Cooffe shop access"
 
+  controllers:
+    admin_controller:
+      request_shop_sended: "Your request has been sended. You will receive an email."
+      request_shop_error: "Error sending the request. Bad id."
+
   # Para las vistas de devise
 
   devise:

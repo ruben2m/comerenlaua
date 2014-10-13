@@ -34,8 +34,46 @@ Cuando /^se identifica el usuario$/ do
   click_button "Iniciar sesión"
 end
 
-Entonces /^debe aparecer la pantalla de selección de cafetería$/ do
+Entonces /^debe aparecer la pantalla de petición de cafetería$/ do
+  expect(page).to have_content("Petición de gestión de Cafetería")
   expect(page).to have_content("Club social I")
+  expect(page).to have_content("Don Jamón")
+  expect(page).to have_content("Cafetería de Ciencias")
+end
+
+Cuando /^selecciono la cafetería "(.*?)"$/ do |shop|
+  click_link shop
+end
+
+Entonces /^envía un correo a "(.*?)"$/ do |correo|
+  #TODO step 'I should receive an email'
+  expect(page).to have_content("Se ha enviado la petición de gestionar la cafetería")
+  expect(page).to have_content("Cafetería de Ciencias")
+end
+
+Cuando /^el administrador acepta la gestión con "(.*?)"$/ do |shop|
+  s = Shop.where(title: shop).first
+  u = User.first # solo hay un usuario
+  Manage.create(user_id: u.id, shop_id: s.id)
+end
+
+Cuando /^el usuario vuelve a identificarse$/ do
+  click_link "Cerrar sesión"
+  step "se identifica el usuario"
+end
+
+Entonces /^accederá a la cafetería "(.*?)"$/ do |shop|
+  expect(page).to have_content("Gestión de menú semanal")
+  expect(page).to have_content(shop)
+end
+
+Cuando /^accedo a petición de cafetería$/ do
+  click_link("Solicitar gestionar otra cafetería")
+  step "debe aparecer la pantalla de petición de cafetería"
+end
+
+Entonces /^debe aparecer la pantalla de selección de cafetería$/ do
+  expect(page).to have_content("Selecciona Cafetería a gestionar")
   expect(page).to have_content("Don Jamón")
   expect(page).to have_content("Cafetería de Ciencias")
 end

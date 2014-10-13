@@ -24,6 +24,9 @@
       %p.alert.alert-danger
         %button.close{:type=>"button", "data-dismiss"=>"alert"}×
         =alert
+    -if current_user
+      %p
+        =link_to "Cerrar sesión", destroy_user_session_path, method: :delete
 
     = yield
 

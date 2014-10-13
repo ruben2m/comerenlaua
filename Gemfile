@@ -16,6 +16,7 @@ gem 'haml-rails'
 gem 'devise'
 
 group :development do
+  gem 'thin'
   gem 'uglifier', '>= 1.3.0'
   gem 'sqlite3'
   gem 'spring' #,        group: :development

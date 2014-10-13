@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_of_week: 1
+  shop_id: 
+  menu_id: 
+
+two:
+  day_of_week: 1
+  shop_id: 
+  menu_id: 
