@@ -2,3 +2,42 @@
   =field_set_tag do
     =f.label :name
     =f.text_field :name
+
+    %ul#courses.courses
+      =f.fields_for :courses do |fc|
+        %li
+          =fc.text_field :name
+          =fc.text_field :text
+    =button_tag t('.add_course'), type: 'button', id: 'add-course'
+
+    %ul.courses
+      %li
+        =f.label :desserts
+        =f.text_field :desserts
+      %li
+        =f.label :drinks
+        =f.text_field :drinks
+      %li
+        =f.check_box :bread_included
+        =f.label :bread_included
+
+    %ul#menukinds
+      %li
+        %span.option=t('.text')
+        %span.price=t('.price')
+      =f.fields_for :menukinds do |fm|
+        %li
+          =fm.text_field :text
+          =fm.text_field :price
+    =button_tag t('.add_menu_kind'), type: 'button', id: 'add-menu-kind'
+
+  =button_tag t('.cancel'), type: 'reset'
+  =button_tag t('.save'), type: 'submit'
+
+:javascript
+  $('#add-course').click(function(){
+    var n=$('ul#courses li').length;
+    $('<li><input id="menu_courses_attributes_'+n+'_name" type="text" name="menu[courses_attributes]['+n+'][name]"> <input id="menu_courses_attributes_'+n+'_text" type="text" name="menu[courses_attributes]['+n+'][text]"></li>').appendTo('#courses');
+    $('#menu_courses_attributes_'+n+'_name').focus();
+  });
+

@@ -20,8 +20,6 @@ class MenusController < ApplicationController
     # La siguiente linea fuerzo un find para comprobar que el menu
     # pertenece al usuario actual
     @shop = current_user.shops.find(@menu.shop.id)
-    @courses = @menu.courses
-    @menu_kinds = @menu.menukinds
 
     respond_to do |format|
       format.html

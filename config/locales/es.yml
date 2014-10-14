@@ -6,7 +6,7 @@ es:
   common:
     modify: "Modificar"
 
-
+  # admin ###################################################
   admin:
     index:
       title: "Gestión de menú semanal"
@@ -24,8 +24,7 @@ es:
       request_shop_sended: "Se ha enviado la petición de gestionar la cafetería %{shop}. Recibirá un email cuando el Administrador le acredite"
       request_shop_error: "No se ha podido enviar la petición. 'Código incorrecto'"
 
-  # Para las vistas de devise
-
+  # Para las vistas de devise ##########################################
   devise:
     confirmations:
       new:
@@ -96,15 +95,33 @@ es:
         title: "Reenviar instrucciones de desbloqueo"
         resend: "Reenviar instrucciones de desbloqueo"
 
+  # menus ##########################################
+  menus:
+    form:
+      add_course: "Añadir otro plato"
+      text: "Opción de menú"
+      price: "Precio"
+      add_menu_kind: "Añadir otra opción de menú"
+      cancel: "Cancelar cambios"
+      save: "Grabar"
+
+  # activerecord ##########################################
 
   activerecord:
     attributes:
+      menu:
+        name: "Nombre"
+        desserts: "Postres"
+        drinks: "Bebidas"
+        bread_included: "¿Incluye pan?"
+      menukind:
+        text: "Opción de menú"
+        price: "Precio"
       user:
         email: "Correo electrónico"
         password: "Contraseña"
         password_confirmation: "Repetir contraseña"
         remember_me: "No cerrar sesión"
-
 
 
   # #############
