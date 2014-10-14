@@ -3,13 +3,20 @@ Rails.application.routes.draw do
   scope '(:locale)', locale: /es|en/ do
     devise_for :users
 
-    resources :day
+    resources :days
+    resources :menus
 
+    get '/menus/new/:shop' => 'menus#new'
+    get '/menus/edit/:menu' => 'menus#edit'
+
+    post '/days/addmenu(/:day(/:menu))' => "days#add_menu"
+    post '/days/deletemenu(/:day(/:menu))' => "days#delete_menu"
+    #post '/admin/addmenu(/:day(/:menu))' => "admin#add_menu"
+    #post '/admin/deletemenu(/:day(/:menu))' => "admin#delete_menu"
+
+    get '/newmenu/:shop' => "admin#new_menu"
     get 'admin/index(/:id(/:day))' => "admin#index"
-    post '/admin/addmenu(/:day(/:menu))' => "admin#add_menu"
-    post '/admin/deletemenu(/:day(/:menu))' => "admin#delete_menu"
     get '/admin' => "admin#index"
-
     get 'admin/select_shop'
     get 'admin/request_shop/:id' => 'admin#request_shop'
     get 'admin/choose_shop' => 'admin#choose_shop'

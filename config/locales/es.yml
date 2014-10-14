@@ -15,6 +15,7 @@ es:
       drink: "Bebida"
       bread: "Pan"
       options: "Opciones"
+      new_menu: "Crear nuevo menu"
     select_shop:
       title: "Petición de gestión de Cafetería"
     choose_shop:
