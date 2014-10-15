@@ -21,9 +21,9 @@ when 'development'
 
   user = User.create(email: "esrumor@hotmail.com", password: "publicpass", password_confirmation: "publicpass", confirmed_at: Time.now)
 
-  shop1 = user.shops.create(title: "Club social I", manager: "Pepito Pérez", phone: "965665656", email: "clubso1@ua.es", timetable: "horario de apertura")
-  shop2 = user.shops.create(title: "Don Jamón", manager: "Alvaro Alvarado", phone: "965665657", email: "donjamon@ua.es", timetable: "horario de apertura don jamón")
-  shop3 = user.shops.create(title: "Cafetería de Ciencias", manager: "Raul Maul", phone: "965665658", email: "ciencias@ua.es", timetable: "horario de apertura ciencias")
+  shop1 = user.shops.create(title: "Club social I", manager: "Pepito Pérez", phone: "965665656", email: "clubso1@ua.es", timetable: "horario de apertura", photo: "clubso1.jpg")
+  shop2 = user.shops.create(title: "Don Jamón", manager: "Alvaro Alvarado", phone: "965665657", email: "donjamon@ua.es", timetable: "horario de apertura don jamón", photo: "donjamon.jpg")
+  shop3 = user.shops.create(title: "Cafetería de Ciencias", manager: "Raul Maul", phone: "965665658", email: "ciencias@ua.es", timetable: "horario de apertura ciencias", photo: "ciencias.jpg")
 
   menu21 = shop2.menus.create(name: 'Menu 1 Jamon',drinks: 'Refresco, agua', desserts: 'Flan, helado', bread_included: true)
   menu22 = shop2.menus.create(name: 'Menu 2 Jamon',drinks: 'Refresco2, agua2', desserts: 'Flan2, helado2', bread_included: false)

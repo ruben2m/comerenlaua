@@ -2,12 +2,13 @@
   -if @menu.errors.any?
     #error_explanation
       %h2
-        = pluralize(@menu.errors.count, "error")
-        prohibited this user from being saved:
+        = t('common.error', count: @menu.errors.count)
+        = t('.prohibited_being_saved')+':'
       %ul
         - @menu.errors.full_messages.each do |message|
           %li= message
   =field_set_tag do
+    =f.hidden_field :shop_id
     =f.label :name
     =f.text_field :name
 
@@ -16,6 +17,7 @@
         %li{id:"course-#{fc.index}"}
           =fc.text_field :name
           =fc.text_field :text
+          =fc.hidden_field "_destroy", value: 0
           %span{id:"name_label_#{fc.index}", class:"labels label-name"}=@menu.courses[fc.index].name
           %span{id:"text_label_#{fc.index}", class:"labels label-text"}=@menu.courses[fc.index].text
           =button_tag t('.delete'), type: 'button', id: "delete-course-#{fc.index}", class: 'delete-course'
@@ -40,6 +42,7 @@
         %li{id:"menukind-#{fm.index}"}
           =fm.text_field :text
           =fm.text_field :price
+          =fm.hidden_field "_destroy", value: 0
           %span{id:"text_label_menukind_#{fm.index}", class:"labels label-text-menukind"}=@menu.menukinds[fm.index].text
           %span{id:"price_label_menukind_#{fm.index}", class:"labels label-price-menukind"}=@menu.menukinds[fm.index].price
           =button_tag t('.delete'), type: 'button', id: "delete-menukind-#{fm.index}", class: 'delete-menukind'
@@ -47,6 +50,7 @@
 
   =button_tag t('.cancel'), type: 'reset'
   =button_tag t('.save'), type: 'submit'
+  =link_to t('.delete'), @menu, method: :delete, data: { confirm: t('.really_delete')}
 
 :javascript
   // menukinds
@@ -69,15 +73,19 @@
     $('#menukind-'+n+' input').toggle();
     $('#menukind-'+n+' span').toggle();
     if(btn.attr('class')=='delete-menukind') {
+      // Borrar
       // Refrescamos valor en labels
       $('#text_label_menukind_'+n).html($('#menu_menukinds_attributes_'+n+'_text').val());
       $('#price_label_menukind_'+n).html($('#menu_menukinds_attributes_'+n+'_price').val());
       //
       btn.attr('class','undelete-menukind');
       btn.html('#{t('.undelete')}');
+      $('#menu_menukinds_attributes_'+n+'__destroy').val(1);
     }else{
+      // Recuperar
       btn.attr('class','delete-menukind');
       btn.html('#{t('.delete')}');
+      $('#menu_menukinds_attributes_'+n+'__destroy').val(0);
       $('#menu_menukind_attributes_'+n+'_text').focus();
     }
   };
@@ -99,9 +107,11 @@
       //
       btn.attr('class','undelete-course');
       btn.html('#{t('.undelete')}');
+      $('#menu_courses_attributes_'+n+'__destroy').val(1);
     }else{
       btn.attr('class','delete-course');
       btn.html('#{t('.delete')}');
+      $('#menu_courses_attributes_'+n+'__destroy').val(0);
       $('#menu_courses_attributes_'+n+'_name').focus();
     }
   };

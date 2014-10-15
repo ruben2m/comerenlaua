@@ -5,6 +5,13 @@ es:
 
   common:
     modify: "Modificar"
+    error:
+      one: "error"
+      other: "errores"
+    bread: "Pan"
+    drink: "Bebida"
+    dessert: "Postre"
+    options: "Opciones de Menú"
 
   # admin ###################################################
   admin:
@@ -23,6 +30,11 @@ es:
     request_shop:
       request_shop_sended: "Se ha enviado la petición de gestionar la cafetería %{shop}. Recibirá un email cuando el Administrador le acredite"
       request_shop_error: "No se ha podido enviar la petición. 'Código incorrecto'"
+    menus:
+      drink: "Bebida"
+      dessert: "Postre"
+      bread: "Pan"
+      options: "Opciones"
 
   # Para las vistas de devise ##########################################
   devise:
@@ -104,8 +116,12 @@ es:
       add_menu_kind: "Añadir otra opción de menú"
       cancel: "Cancelar cambios"
       save: "Grabar"
-      delete_course: "Borrar"
-      undelete_course: "Recuperar"
+      delete: "Borrar"
+      undelete: "Recuperar"
+      really_delete: "¿Realmente desea borrar el menú?"
+      prohibited_being_saved: "impiden que se guarden los cambios del menú"
+    update:
+      menu_saved_ok: "Se ha modificado el menú correctamente"
 
   # activerecord ##########################################
 
@@ -265,7 +281,7 @@ es:
   number:
     currency:
       format:
-        delimiter: .
+        delimiter: '.'
         format: ! '%n %u'
         precision: 2
         separator: ! ','
@@ -273,8 +289,8 @@ es:
         strip_insignificant_zeros: false
         unit: €
     format:
-      delimiter: .
-      precision: 3
+      delimiter: '.'
+      precision: 2
       separator: ! ','
       significant: false
       strip_insignificant_zeros: false

@@ -1,2 +1,23 @@
-%h1 Main#index
 %p=link_to t("link_admin"), controller: "admin"
+%h1 Main#index
+-@shops.each do |s|
+  %figure
+    =image_tag s.photo
+    %figcaption
+      %ul
+        %li=s.title
+        -s.menus.each do |sm|
+          %li
+            %ul
+              %li=sm.name
+              -sm.courses do |smc|
+                %li=smc.name+': '+smc.text
+              %li=t('common.dessert')+': '+sm.desserts
+              %li=t('common.drink')+': '+sm.drinks
+              -if sm.bread_included
+                %li=t('.bread')
+              %li=t('.options')
+              -sm.menukinds.each do |smm|
+                %li=smm.text+' '+number_to_currency(smm.price)
+
+

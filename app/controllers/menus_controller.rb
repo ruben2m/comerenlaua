@@ -1,10 +1,19 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: [:edit, :update, :destroy]
 
-  def index
-  end
-
   def create
+    @menu = Menu.new(menu_params)
+
+    # para comprobar que la tienda pertenece al usuario
+    @shop = current_user.shops.find(@menu.shop_id)
+
+    respond_to do |format|
+      if @menu.save
+        format.html { redirect_to({controller: :admin, action: :index, id: @shop.id}, notice: t('.menu_created_ok')) }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def new
@@ -23,17 +32,10 @@ class MenusController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  #Processing by MenusController#update as HTML
-  #Parameters: {"utf8"=>"✓", "authenticity_token"=>"SOOJRMMazkS6laSWUZ8hxEKTknHoMZY+TDigObAfzNk=", "menu"=>{"name"=>"Menu 1 Jamon", "courses_attributes"=>{"0"=>{"name"=>"Plato 1", "text"=>"Ensalada,esparragos", "id"=>"1"}, "1"=>{"name"=>"Plato 2", "text"=>"paella, lentejas", "id"=>"2"}}, "desserts"=>"Flan, helado", "drinks"=>"Refresco, agua", "bread_included"=>"1", "menukinds_attributes"=>{"0"=>{"text"=>"1º + 2º + postre + bebida + café", "price"=>"6.7", "id"=>"1"}, "1"=>{"text"=>"1º + 2º + bebida", "price"=>"5.2", "id"=>"2"}}}, "button"=>"", "locale"=>"es", "id"=>"1"}
-  #User Load (0.3ms)  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
-
   def update
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to model: :admin, action: :index, id: @shop.id, notice: 'User was successfully updated.' }
+        format.html { redirect_to({controller: :admin, action: :index, id: @shop.id}, notice: t('.menu_saved_ok')) }
       else
         format.html { render :edit }
       end
@@ -41,10 +43,13 @@ class MenusController < ApplicationController
   end
 
   def destroy
+    @menu.destroy
+    respond_to do |format|
+      format.html { redirect_to({controller: :admin, action: :index, id: @shop.id}, notice: t('.menu_destroyed')) }
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_menu
       @menu = Menu.find(params[:id])
       # La siguiente linea fuerzo un find para comprobar que el menu
@@ -52,9 +57,8 @@ class MenusController < ApplicationController
       @shop = current_user.shops.find(@menu.shop.id)
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:name, :courses_attributes, :desserts, :drinks, :bread_included, :menukinds_attributes, :id)
+      params.require(:menu).permit(:name, :desserts, :drinks, :bread_included, :id, :shop_id, menukinds_attributes: [:text, :price, :id, :_destroy], courses_attributes: [:name, :text, :id, :_destroy])
     end
 
 end
