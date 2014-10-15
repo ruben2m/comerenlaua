@@ -5,9 +5,12 @@
 
     %ul#courses.courses
       =f.fields_for :courses do |fc|
-        %li
+        %li{id:"course-#{fc.index}"}
           =fc.text_field :name
           =fc.text_field :text
+          %span{id:"name_label_#{fc.index}", class:"labels label-name"}=@menu.courses[fc.index].name
+          %span{id:"text_label_#{fc.index}", class:"labels label-text"}=@menu.courses[fc.index].text
+          =button_tag t('.delete'), type: 'button', id: "delete-course-#{fc.index}", class: 'delete-course'
     =button_tag t('.add_course'), type: 'button', id: 'add-course'
 
     %ul.courses
@@ -21,23 +24,94 @@
         =f.check_box :bread_included
         =f.label :bread_included
 
-    %ul#menukinds
+    %ul#menukinds.menukinds
       %li
         %span.option=t('.text')
         %span.price=t('.price')
       =f.fields_for :menukinds do |fm|
-        %li
+        %li{id:"menukind-#{fm.index}"}
           =fm.text_field :text
           =fm.text_field :price
+          %span{id:"text_label_menukind_#{fm.index}", class:"labels label-text-menukind"}=@menu.menukinds[fm.index].text
+          %span{id:"price_label_menukind_#{fm.index}", class:"labels label-price-menukind"}=@menu.menukinds[fm.index].price
+          =button_tag t('.delete'), type: 'button', id: "delete-menukind-#{fm.index}", class: 'delete-menukind'
     =button_tag t('.add_menu_kind'), type: 'button', id: 'add-menu-kind'
 
   =button_tag t('.cancel'), type: 'reset'
   =button_tag t('.save'), type: 'submit'
 
 :javascript
-  $('#add-course').click(function(){
-    var n=$('ul#courses li').length;
-    $('<li><input id="menu_courses_attributes_'+n+'_name" type="text" name="menu[courses_attributes]['+n+'][name]"> <input id="menu_courses_attributes_'+n+'_text" type="text" name="menu[courses_attributes]['+n+'][text]"></li>').appendTo('#courses');
-    $('#menu_courses_attributes_'+n+'_name').focus();
+  // menukinds
+  $('#add-menu-kind').click(function(){
+    var n=$('ul#menukinds li').length-1; // existe un li +
+    var text_field='<input id="menu_menukinds_attributes_'+n+'_text" type="text" name="menu[menukinds_attributes]['+n+'][text]">';
+    var price_field='<input id="menu_menukinds_attributes_'+n+'_price" type="text" name="menu[menukinds_attributes]['+n+'][price]">';
+    var delete_btn='<button id="delete-menukind-'+n+'" class="delete-menukind" type="button">#{t(".delete")}</button>';
+    var text_label='<span id="text_label_menukind_'+n+'" class="labels label-text-menukind"></span>';
+    var price_label='<span id="price_label_menukind_'+n+'" class="labels label-price-menukind"></span>';
+
+    $('<li id="menukind-'+n+'">'+text_field+' '+price_field+' '+text_label+' '+price_label+' '+delete_btn+'</li>').appendTo('#menukinds');
+    $('#delete-menukind-'+n).click(function(){delete_menukind($(this))});
+
+    $('#menu_menukinds_attributes_'+n+'_text').focus();
   });
 
+  var delete_menukind=function(btn) {
+    var n=btn.attr('id').match(/[\d]+$/);
+    $('#menukind-'+n+' input').toggle();
+    $('#menukind-'+n+' span').toggle();
+    if(btn.attr('class')=='delete-menukind') {
+      // Refrescamos valor en labels
+      $('#text_label_menukind_'+n).html($('#menu_menukinds_attributes_'+n+'_text').val());
+      $('#price_label_menukind_'+n).html($('#menu_menukinds_attributes_'+n+'_price').val());
+      //
+      btn.attr('class','undelete-menukind');
+      btn.html('#{t('.undelete')}');
+    }else{
+      btn.attr('class','delete-menukind');
+      btn.html('#{t('.delete')}');
+      $('#menu_menukind_attributes_'+n+'_text').focus();
+    }
+  };
+
+  $('.delete-menukind').click(function(){
+    delete_menukind($(this));
+  });
+
+
+  // courses
+  var delete_course=function(btn) {
+    var n=btn.attr('id').match(/[\d]+$/);
+    $('#course-'+n+' input').toggle();
+    $('#course-'+n+' span').toggle();
+    if(btn.attr('class')=='delete-course') {
+      // Refrescamos valor en labels
+      $('#name_label_'+n).html($('#menu_courses_attributes_'+n+'_name').val());
+      $('#text_label_'+n).html($('#menu_courses_attributes_'+n+'_text').val());
+      //
+      btn.attr('class','undelete-course');
+      btn.html('#{t('.undelete')}');
+    }else{
+      btn.attr('class','delete-course');
+      btn.html('#{t('.delete')}');
+      $('#menu_courses_attributes_'+n+'_name').focus();
+    }
+  };
+
+  $('.delete-course').click(function(){
+    delete_course($(this));
+  });
+
+  $('#add-course').click(function(){
+    var n=$('ul#courses li').length;
+    var name_field='<input id="menu_courses_attributes_'+n+'_name" type="text" name="menu[courses_attributes]['+n+'][name]">';
+    var text_field='<input id="menu_courses_attributes_'+n+'_text" type="text" name="menu[courses_attributes]['+n+'][text]">';
+    var delete_btn='<button id="delete-course-'+n+'" class="delete-course" type="button">#{t(".delete_course")}</button>';
+    var name_label='<span id="name_label_'+n+'" class="labels label-name"></span>';
+    var text_label='<span id="text_label_'+n+'" class="labels label-text"></span>';
+
+    $('<li id="course-'+n+'">'+name_field+' '+text_field+' '+name_label+' '+text_label+' '+delete_btn+'</li>').appendTo('#courses');
+    $('#delete-course-'+n).click(function(){delete_course($(this))});
+
+    $('#menu_courses_attributes_'+n+'_name').focus();
+  });

@@ -104,6 +104,8 @@ es:
       add_menu_kind: "Añadir otra opción de menú"
       cancel: "Cancelar cambios"
       save: "Grabar"
+      delete_course: "Borrar"
+      undelete_course: "Recuperar"
 
   # activerecord ##########################################
 
