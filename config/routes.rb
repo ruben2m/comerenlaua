@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :menus
 
     get '/menus/new/:shop' => 'menus#new'
-    get '/menus/edit/:menu' => 'menus#edit'
+    get '/menus/edit/:id' => 'menus#edit'
 
     post '/days/addmenu(/:day(/:menu))' => "days#add_menu"
     post '/days/deletemenu(/:day(/:menu))' => "days#delete_menu"
