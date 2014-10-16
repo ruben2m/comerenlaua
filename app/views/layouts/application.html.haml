@@ -16,17 +16,44 @@
     =yield :head
 
   %body
-    -if notice
-      %p.alert.alert-info
-        %button.close{:type=>"button", "data-dismiss"=>"alert"}×
-        =notice
-    -if alert
-      %p.alert.alert-danger
-        %button.close{:type=>"button", "data-dismiss"=>"alert"}×
-        =alert
-    -if current_user
-      %p
-        =link_to "Cerrar sesión", destroy_user_session_path, method: :delete
+    %header{ class: controller.controller_name }
+      #language
+        %ul
+          -if I18n.locale==:es
+            %li.active Español
+          -else
+            %li=link_to "Español", url_for(locale: :es)
+          -if I18n.locale==:ca
+            %li.active Valencià
+          -else
+            %li=link_to "Valencià", url_for(locale: :ca)
+          -if I18n.locale==:en
+            %li.active English
+          -else
+            %li=link_to "English", url_for(locale: :en)
+      #header
+        .content
+          =link_to(image_tag("logo-ua.png"), "http://www.ua.es")
+          =link_to t('common.title'), root_path, id: 'logo'
+          -if current_user
+            %p#user-menu
+              =link_to "Cerrar sesión", destroy_user_session_path, method: :delete
+          %p#links-admin
+            =link_to t("link_admin"), admin_path
 
-    = yield
+    %main
+      -if notice
+        %p.alert.alert-info
+          %button.close{:type=>"button", "data-dismiss"=>"alert"}×
+          =notice
+      -if alert
+        %p.alert.alert-danger
+          %button.close{:type=>"button", "data-dismiss"=>"alert"}×
+          =alert
+
+      = yield
+
+    %footer
+      &copy; 2014
+      =link_to "Rubén Moreno", "mailto:rmm38@alu.ua.es"
 

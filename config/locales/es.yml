@@ -4,6 +4,7 @@ es:
   link_admin: "Acceso cafeterías"
 
   common:
+    title: "Comer en la UA"
     modify: "Modificar"
     error:
       one: "error"
