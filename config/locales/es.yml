@@ -13,6 +13,8 @@ es:
     drink: "Bebida"
     dessert: "Postre"
     options: "Opciones de Menú"
+    delete: "Borrar"
+    undelete: "Recuperar"
 
   # admin ###################################################
   admin:
@@ -117,8 +119,6 @@ es:
       add_menu_kind: "Añadir otra opción de menú"
       cancel: "Cancelar cambios"
       save: "Grabar"
-      delete: "Borrar"
-      undelete: "Recuperar"
       really_delete: "¿Realmente desea borrar el menú?"
       prohibited_being_saved: "impiden que se guarden los cambios del menú"
     update:
