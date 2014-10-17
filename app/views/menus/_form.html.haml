@@ -19,10 +19,9 @@
           =fc.hidden_field :name
           =fc.text_field :text
           =fc.hidden_field "_destroy", value: 0
-          %span{id:"name_label_#{fc.index}", class:"labels label-name"}=@menu.courses[fc.index].name
-          %span{id:"text_label_#{fc.index}", class:"labels label-text"}=@menu.courses[fc.index].text
           =button_tag t('common.delete'), type: 'button', id: "delete-course-#{fc.index}", class: 'delete-course'
-    =button_tag t('.add_course'), type: 'button', id: 'add-course'
+    .centrado
+      =button_tag t('.add_course'), type: 'button', id: 'add-course'
 
     %ul.courses
       %li
@@ -32,8 +31,9 @@
         =f.label :drinks
         =f.text_field :drinks
       %li
-        =f.check_box :bread_included
-        =f.label :bread_included
+        .centrado
+          =f.check_box :bread_included
+          =f.label :bread_included
 
     %ul#menukinds.menukinds
       %li
@@ -41,16 +41,15 @@
         %span.price=t('.price')
       =f.fields_for :menukinds do |fm|
         %li{id:"menukind-#{fm.index}"}
-          =fm.text_field :text
+          =fm.text_field :text, class: "input-text"
           =fm.text_field :price, class: "input-price"
           =fm.hidden_field "_destroy", value: 0
-          %span{id:"text_label_menukind_#{fm.index}", class:"labels label-text-menukind"}=@menu.menukinds[fm.index].text
-          %span{id:"price_label_menukind_#{fm.index}", class:"labels label-price-menukind"}=@menu.menukinds[fm.index].price
           =button_tag t('common.delete'), type: 'button', id: "delete-menukind-#{fm.index}", class: 'delete-menukind'
-    =button_tag t('.add_menu_kind'), type: 'button', id: 'add-menu-kind'
+    .centrado
+      =button_tag t('.add_menu_kind'), type: 'button', id: 'add-menu-kind'
 
-    =button_tag t('.cancel'), type: 'reset'
-    =button_tag t('.save'), type: 'submit'
     =link_to t('common.delete'), @menu, method: :delete, data: { confirm: t('.really_delete')}
+    .pull-right
+      =button_tag t('.save'), type: 'submit'
 
 =javascript_include_tag "menus"

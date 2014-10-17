@@ -1,22 +1,26 @@
-form .courses .labels, form .menukinds .labels {
-  display: none;
-  text-decoration: line-through;
-}
 
 #menu-form {
+  text-align: left;
+  padding: 10px;
   display: inline;
-  width: 350px;
+  width: 385px;
+  border: 1px solid #DDDDDD;
+  box-shadow: 4px 4px 4px #CCCCCC
 }
 
 #menu-form ul {
   list-style: none;
+  padding-left: 0;
 }
 
 #menu-form span {
   font-weight: bold;
 }
-.input-price {
-  width: 60px;
+
+#menu-form label, #menu-form span {
+  display: inline-block;
+  width: 75px;
+  text-align: right;
 }
 
 #add-course {
@@ -25,4 +29,24 @@ form .courses .labels, form .menukinds .labels {
 
 #courses, #menukinds {
   margin-bottom: 2px;
+}
+
+.centrado {
+  display: block;
+  text-align: center;
+}
+
+#menukinds .input-text, #menukinds .option { width: 205px; }
+#menukinds .input-price, #menukinds .price { width: 60px; }
+#menukinds .option, #menukinds .price {
+  text-align: center;
+}
+
+label[for="menu_bread_included"] {
+  width: auto !important;
+}
+
+.borrado {
+  text-decoration: line-through;
+  background-color: #F2DEDE;
 }

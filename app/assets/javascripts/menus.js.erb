@@ -1,14 +1,12 @@
 // menukinds
 $('#add-menu-kind').click(function(){
   var n=$('ul#menukinds li').length-1; // existe un li +
-  var text_field='<input id="menu_menukinds_attributes_'+n+'_text" type="text" name="menu[menukinds_attributes]['+n+'][text]">';
+  var text_field='<input id="menu_menukinds_attributes_'+n+'_text" type="text" name="menu[menukinds_attributes]['+n+'][text]" class="input-text">';
   var price_field='<input id="menu_menukinds_attributes_'+n+'_price" type="text" name="menu[menukinds_attributes]['+n+'][price]" class="input-price">';
   var destroy_field='<input id="menu_menukinds_attributes_'+n+'__destroy" type="hidden" value="0" name="menu[menukinds_attributes]['+n+'][_destroy]">';
   var delete_btn='<button id="delete-menukind-'+n+'" class="delete-menukind" type="button"><%=I18n.t("common.delete")%></button>';
-  var text_label='<span id="text_label_menukind_'+n+'" class="labels label-text-menukind"></span>';
-  var price_label='<span id="price_label_menukind_'+n+'" class="labels label-price-menukind"></span>';
 
-  $('<li id="menukind-'+n+'">'+text_field+' '+price_field+' '+destroy_field+' '+text_label+' '+price_label+' '+delete_btn+'</li>').appendTo('#menukinds');
+  $('<li id="menukind-'+n+'">'+text_field+' '+price_field+' '+destroy_field+' '+delete_btn+'</li>').appendTo('#menukinds');
   $('#delete-menukind-'+n).click(function(){delete_menukind($(this))});
 
   $('#menu_menukinds_attributes_'+n+'_text').focus();
@@ -16,14 +14,12 @@ $('#add-menu-kind').click(function(){
 
 var delete_menukind=function(btn) {
   var n=btn.attr('id').match(/[\d]+$/);
-  $('#menukind-'+n+' input').toggle();
-  $('#menukind-'+n+' span').toggle();
+
+  $('#menukind-'+n+' input').toggleClass('borrado');
+  $('#menukind-'+n+' span').toggleClass('borrado');
+
   if(btn.attr('class')=='delete-menukind') {
     // Borrar
-    // Refrescamos valor en labels
-    $('#text_label_menukind_'+n).html($('#menu_menukinds_attributes_'+n+'_text').val());
-    $('#price_label_menukind_'+n).html($('#menu_menukinds_attributes_'+n+'_price').val());
-    //
     btn.attr('class','undelete-menukind');
     btn.html('<%=I18n.t('common.undelete')%>');
     $('#menu_menukinds_attributes_'+n+'__destroy').val(1);
@@ -44,12 +40,11 @@ $('.delete-menukind').click(function(){
 // courses
 var delete_course=function(btn) {
   var n=btn.attr('id').match(/[\d]+$/);
-  $('#course-'+n+' input').toggle();
-  $('#course-'+n+' span').toggle();
+
+  $('#course-'+n+' input').toggleClass('borrado');
+  $('#course-'+n+' span').toggleClass('borrado');
+
   if(btn.attr('class')=='delete-course') {
-    // Refrescamos valor en labels
-    $('#text_label_'+n).html($('#menu_courses_attributes_'+n+'_text').val());
-    //
     btn.attr('class','undelete-course');
     btn.html('<%=I18n.t('common.undelete')%>');
     $('#menu_courses_attributes_'+n+'__destroy').val(1);
@@ -71,10 +66,8 @@ $('#add-course').click(function(){
   var text_field='<input id="menu_courses_attributes_'+n+'_text" type="text" name="menu[courses_attributes]['+n+'][text]">';
   var destroy_field='<input id="menu_courses_attributes_'+n+'__destroy" type="hidden" value="0" name="menu[courses_attributes]['+n+'][_destroy]">';
   var delete_btn='<button id="delete-course-'+n+'" class="delete-course" type="button"><%=I18n.t("common.delete")%></button>';
-  var name_label='<span id="name_label_'+n+'" class="labels label-name">'+(n+1)+'º</span>';
-  var text_label='<span id="text_label_'+n+'" class="labels label-text"></span>';
 
-  $('<li id="course-'+n+'">'+name_field+' '+text_field+' '+destroy_field+' '+name_label+' '+text_label+' '+delete_btn+'</li>').appendTo('#courses');
+  $('<li id="course-'+n+'">'+name_field+' '+text_field+' '+destroy_field+' '+delete_btn+'</li>').appendTo('#courses');
   $('#delete-course-'+n).click(function(){delete_course($(this))});
 
   $('#menu_courses_attributes_'+n+'_text').focus();
