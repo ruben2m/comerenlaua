@@ -1,0 +1,17 @@
+%h2= t('.title')
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  =field_set_tag( nil, id: 'registration-form', class: 'fieldset' ) do
+    = devise_error_messages!
+    = f.label :email
+    = f.email_field :email, autofocus: true
+    -#- if @validatable
+      -#.links
+        -#(#{@minimum_password_length} #{t('.characters_minimum')})
+    = f.label :password
+    = f.password_field :password, autocomplete: "off"
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "off"
+    .links
+      = f.submit t('.sign_up')
+    .links
+      = render "devise/shared/links"

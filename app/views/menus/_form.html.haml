@@ -7,7 +7,7 @@
       %ul
         - @menu.errors.full_messages.each do |message|
           %li= message
-  =field_set_tag( nil, id: 'menu-form') do
+  =field_set_tag( nil, id: 'menu-form', class: 'fieldset') do
     =f.hidden_field :shop_id
     =f.label :name
     =f.text_field :name
@@ -20,7 +20,7 @@
           =fc.text_field :text
           =fc.hidden_field "_destroy", value: 0
           =button_tag t('common.delete'), type: 'button', id: "delete-course-#{fc.index}", class: 'delete-course'
-    .centrado
+    .links
       =button_tag t('.add_course'), type: 'button', id: 'add-course'
 
     %ul.courses
@@ -31,7 +31,7 @@
         =f.label :drinks
         =f.text_field :drinks
       %li
-        .centrado
+        .links
           =f.check_box :bread_included
           =f.label :bread_included
 
@@ -45,7 +45,7 @@
           =fm.text_field :price, class: "input-price"
           =fm.hidden_field "_destroy", value: 0
           =button_tag t('common.delete'), type: 'button', id: "delete-menukind-#{fm.index}", class: 'delete-menukind'
-    .centrado
+    .links
       =button_tag t('.add_menu_kind'), type: 'button', id: 'add-menu-kind'
 
     =link_to t('common.delete'), @menu, method: :delete, data: { confirm: t('.really_delete')}
