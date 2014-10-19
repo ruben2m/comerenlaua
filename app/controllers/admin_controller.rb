@@ -4,7 +4,7 @@ class AdminController < ApplicationController
     if current_user.shops.empty?
       # Petición de administración de cafetería
       redirect_to action: "select_shop"
-    elsif current_user.shops.count>1 and !check_shop(params[:id])
+    elsif current_user.shops.count>1 and !check_shop(params[:shop])
       # Seleccionar cafetería a gestionar
       redirect_to action: "choose_shop"
     else
@@ -12,7 +12,7 @@ class AdminController < ApplicationController
       if current_user.shops.count==1
         @shop = current_user.shops.first
       else
-        @shop = current_user.shops.find(params[:id])
+        @shop = current_user.shops.find(params[:shop])
       end
 
       @day_names = []

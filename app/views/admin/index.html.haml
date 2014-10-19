@@ -1,11 +1,13 @@
 -#encoding: utf-8
-=link_to t('.request_new_shop'), action: "select_shop"
 %h3=t('.title')
-%h4=@shop.title
-=select_tag :day_of_week, options_for_select(@day_names)
-#edit_day
-  = render :partial => 'menus'
-=button_to t('.new_menu'), "/menus/new/#{@shop.id}", method: 'get'
+#menus-tienda
+  .links
+    %h4=@shop.title
+    =select_tag :day_of_week, options_for_select(@day_names)
+  #edit_day
+    = render :partial => 'menus'
+  .links
+    =button_to t('.new_menu'), "/menus/new/#{@shop.id}", method: 'get'
 
 -# Función para cambiar de día
 :javascript

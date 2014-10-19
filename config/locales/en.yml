@@ -1,35 +1,47 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
+#encoding: UTF-8
 en:
   title: "Where to eat in the UA"
   link_admin: "Cooffe shop access"
+  link_menu: "Manage meal"
+  link_choose_shop: "Select coffe-shop"
 
-  controllers:
-    admin_controller:
-      request_shop_sended: "Your request has been sended. You will receive an email."
-      request_shop_error: "Error sending the request. Bad id."
+  common:
+    title: "Eat at the UA"
+    modify: "Modify"
+    error:
+      one: "error"
+      other: "errors"
+    bread: "Bread"
+    drink: "Drink"
+    dessert: "Dessert"
+    options: "Meal options"
+    delete: "Delete"
+    undelete: "Undelete"
+  # admin ###################################################
+  admin:
+    index:
+      title: "Gestión de menú semanal"
+      request_new_shop: "Solicitar gestionar otra cafetería"
+      dessert: "Dessert"
+      drink: "Dring"
+      bread: "Bread"
+      options: "Options"
+      new_menu: "New menu"
+    select_shop:
+      title: "Request coffe-shop administration"
+    choose_shop:
+      title: "Select coffe-shop for manage"
+    request_shop:
+      request_shop_sended: "The request to manage the cafeteria %{shop} was sent. You will receive an email when the Administrator certifies you"
+      request_shop_error: "Failed to send the request. 'Bad Code'"
+    menus:
+      drink: "Drink"
+      dessert: "Dessert"
+      bread: "Bread"
+      options: "Options"
 
-  # Para las vistas de devise
 
+  # Para las vistas de devise ##########################################
   devise:
     confirmations:
       new:
@@ -100,3 +112,16 @@ en:
         title: "Resend unlock instructions"
         resend: "Resend unlock instructions"
 
+  # menus ##########################################
+  menus:
+    form:
+      add_course: "Add course"
+      text: "Meal option"
+      price: "Price"
+      add_menu_kind: "Add meal option"
+      cancel: "Revert changes"
+      save: "Save"
+      really_delete: "Do you really want to REMOVE de meal?"
+      prohibited_being_saved: "prohibited being saved"
+    update:
+      menu_saved_ok: "The meal has been modified"

@@ -1,6 +1,5 @@
--#=form_for @day do |f|
-  -# Muestro todos los menus, sean o no del dia, marcando
-    los que son del día
+-# Muestro todos los menus, sean o no del dia, marcando
+  los que son del día
 -@menus.each do |m|
   .menu
     -checked = !@day.menus.where(id: m.id).empty?
@@ -17,7 +16,7 @@
     %ul
       -m.menukinds.each do |mk|
         %li=mk.text+': '+mk.price.to_s+'€'
-    =button_to t('common.modify'), "/menus/edit/#{m.id}", method: 'get'
+    =button_to t('common.modify'), "/menus/edit/#{m.shop_id}/#{m.id}", method: 'get'
 
 :javascript
   $('.menu_check').click(function(){

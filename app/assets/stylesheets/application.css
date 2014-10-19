@@ -11,6 +11,11 @@
  * file per style scope.
  *
  *= require bootstrap_and_overrides.css.less
- *= require_tree .
+ * require_tree .
+ *= require admin
+ *= require common
+ *= require devise
+ *= require main
+ *= require menus
  *= require_self
  */

@@ -1,6 +1,6 @@
 %h3=t('.title')
 -@shops.each do |s|
   %figure
-    =link_to(image_tag(s.photo), action: 'index', id: s.id)
+    =link_to(image_tag(s.photo), action: 'index', shop: s.id)
     %figcaption
-      =link_to s.title, action: 'index', id: s.id
+      =link_to s.title, action: 'index', shop: s.id

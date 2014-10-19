@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  scope '(:locale)', locale: /es|en/ do
+  scope '(:locale)', locale: /es|en|ca/ do
     devise_for :users
 
     resources :days
     resources :menus
 
     get '/menus/new/:shop' => 'menus#new'
-    get '/menus/edit/:id' => 'menus#edit'
+    get '/menus/edit/:shop/:id' => 'menus#edit'
 
     post '/days/addmenu(/:day(/:menu))' => "days#add_menu"
     post '/days/deletemenu(/:day(/:menu))' => "days#delete_menu"
@@ -15,11 +15,11 @@ Rails.application.routes.draw do
     #post '/admin/deletemenu(/:day(/:menu))' => "admin#delete_menu"
 
     get '/newmenu/:shop' => "admin#new_menu"
-    get 'admin/index(/:id(/:day))' => "admin#index"
-    get '/admin' => "admin#index"
-    get 'admin/select_shop'
-    get 'admin/request_shop/:id' => 'admin#request_shop'
-    get 'admin/choose_shop' => 'admin#choose_shop'
+    get 'admin/index(/:shop(/:day))' => "admin#index"
+    get '/admin(/:shop)' => "admin#index", as: "admin"
+    get '/select_shop' => "admin#select_shop", as: "admin_select_shop"
+    get '/request_shop/:id' => 'admin#request_shop'
+    get '/choose_shop' => 'admin#choose_shop', as: "admin_choose_shop"
 
     root to: 'main#index'
 
