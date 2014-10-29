@@ -3,7 +3,7 @@
 #menus-tienda
   .links
     %h4=@shop.title
-    =select_tag :day_of_week, options_for_select(@day_names)
+    =select_tag :day_of_week, options_for_select(@day_names, @day_names[Time.now.wday-1])
   #edit_day
     = render :partial => 'menus'
   .links
@@ -16,7 +16,7 @@
     $.ajax({
       url: '/admin/index',
       type: 'GET',
-      data: { "id" : #{@shop.id}, "day" : $('#day_of_week').val() },
+      data: { "shop" : #{@shop.id}, "day" : $('#day_of_week').val() },
       dataType: 'script',
       error: function() {
         $('#edit_day').html("Error"); // TODO catch

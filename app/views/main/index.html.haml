@@ -5,7 +5,7 @@
         =image_tag s.photo
         %figcaption
           .shop-name=s.title
-          -s.menus.each do |sm|
+          -s.todaymenus.each do |sm|
             %ul.menu
               %li.menu-name=sm.name
               -sm.menukinds.each do |smm|
