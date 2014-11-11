@@ -73,6 +73,12 @@ class AdminController < ApplicationController
     redirect_to({ action: "select_shop" }, notice: notice, alert: error)
   end
 
+  def get_mobile_data
+    respond_to do |format|
+      format.json { render json: "Accedido a parte privada" }
+    end
+  end
+
   protected
     def default_url_options
       { :locale => I18n.locale }

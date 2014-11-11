@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     get '/select_shop' => "admin#select_shop", as: "admin_select_shop"
     get '/request_shop/:id' => 'admin#request_shop'
     get '/choose_shop' => 'admin#choose_shop', as: "admin_choose_shop"
+    get '/mobile_privado' => 'admin#get_mobile_data'
+    get '/mobile_publico' => 'main#get_mobile_data'
 
     root to: 'main#index'
 
