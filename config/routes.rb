@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
 
+
   scope '(:locale)', locale: /es|en|ca/ do
     devise_for :users
+
+    namespace :api do
+      namespace :v1 do
+        devise_scope :user do
+          post 'sessions' => 'sessions#create', :as => 'login'
+          delete 'sessions' => 'sessions#destroy', :as => 'logout'
+        end
+        get 'tasks' => 'tasks#index', :as => 'tasks'
+      end
+    end
 
     resources :days
     resources :menus
@@ -22,6 +33,7 @@ Rails.application.routes.draw do
     get '/choose_shop' => 'admin#choose_shop', as: "admin_choose_shop"
     get '/mobile_privado' => 'admin#get_mobile_data'
     get '/mobile_publico' => 'main#get_mobile_data'
+
 
     root to: 'main#index'
 
