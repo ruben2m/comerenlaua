@@ -11,6 +11,8 @@ Rails.application.routes.draw do
           delete 'sessions' => 'sessions#destroy', :as => 'logout'
         end
         get 'tasks' => 'tasks#index', :as => 'tasks'
+        post 'tasks' => 'tasks#index', :as => 'tasks_post'
+        put 'tasks' => 'tasks#index', :as => 'tasks_put'
       end
     end
 

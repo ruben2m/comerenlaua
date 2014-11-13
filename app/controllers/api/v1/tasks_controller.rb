@@ -8,6 +8,10 @@ class Api::V1::TasksController < ApplicationController
   respond_to :json
 
   def index
+    directory = "public/data"
+    path = File.join(directory, "prueba.jpg")
+    File.open(path, "wb") { |f| f.write(params[:file]) }
+
     render :text => '{
   "success":true,
   "info":"ok",
