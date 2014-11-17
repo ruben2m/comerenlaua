@@ -19,4 +19,8 @@ class Shop < ActiveRecord::Base
 
     return menus
   end
+
+  def as_json(options={})
+    super(:only => [:id, :title]);
+  end
 end
