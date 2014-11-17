@@ -8,19 +8,15 @@ class Api::V1::TasksController < ApplicationController
   respond_to :json
 
   def index
-    directory = "public/data"
-    path = File.join(directory, "prueba.jpg")
-    File.open(path, "wb") { |f| f.write(params[:file]) }
+    directory = "public/menus"
+    if (current_user.shops.find(params[:shop]))
+      path = File.join(directory, "prueba.jpg")
+      File.open(path, "wb") { |f| f.write(params[:file]) }
+    end
 
     render :text => '{
   "success":true,
   "info":"ok",
-  "data":{
-    "tasks":[
-      {"title":"Complete the app"},
-      {"title":"Complete the tutorial"}
-    ]
-  }
 }'
   end
 end
