@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         #post 'tasks' => 'tasks#index', :as => 'tasks_post'
         put 'sube_foto' => 'tasks#sube_foto', :as => 'tasks_put'
         get 'get_foto' => 'tasks#descarga_foto', :as => 'task_get_foto'
+        get 'delete_foto' => 'tasks#elimina_foto', :as => 'task_elimina_foto'
       end
     end
 

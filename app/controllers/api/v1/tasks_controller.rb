@@ -56,4 +56,25 @@ class Api::V1::TasksController < ApplicationController
       render :text => '{ "success":false, "info":"No existe tienda" }'
     end
   end
+
+  def elimina_foto
+    # Elimina la foto de hoy si hay asignada.
+    shop = current_user.shops.find(params[:shop])
+    if shop
+      hoy = Date.today
+      photo = Photo.find_by_date(hoy)
+      if photo
+        path = File.join("public/menus", photo.file)
+
+        photo.destroy!
+        File.delete(path)
+
+        render :text => '{ "success":true, "data":"OK" }'
+      else
+        render :text => '{ "success":true, "data":"nofoto" }'
+      end
+    else
+      render :text => '{ "success":false, "info":"No existe tienda" }'
+    end
+  end
 end
