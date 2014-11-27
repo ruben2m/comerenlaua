@@ -10,9 +10,10 @@ Rails.application.routes.draw do
           post 'sessions' => 'sessions#create', :as => 'login'
           delete 'sessions' => 'sessions#destroy', :as => 'logout'
         end
-        get 'tasks' => 'tasks#index', :as => 'tasks'
-        post 'tasks' => 'tasks#index', :as => 'tasks_post'
-        put 'tasks' => 'tasks#index', :as => 'tasks_put'
+        #get 'tasks' => 'tasks#index', :as => 'tasks'
+        #post 'tasks' => 'tasks#index', :as => 'tasks_post'
+        put 'sube_foto' => 'tasks#sube_foto', :as => 'tasks_put'
+        get 'get_foto' => 'tasks#descarga_foto', :as => 'task_get_foto'
       end
     end
 

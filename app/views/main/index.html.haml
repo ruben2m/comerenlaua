@@ -5,18 +5,22 @@
         =image_tag s.photo
         %figcaption
           .shop-name=s.title
-          -s.todaymenus.each do |sm|
-            %ul.menu
-              %li.menu-name=sm.name
-              -sm.menukinds.each do |smm|
-                %li
-                  =smm.text
-                  %span.price=number_with_precision(smm.price)+'€'
-              -sm.courses.each do |smc|
-                %li.white=smc.name+': '+smc.text
-              %li.white=t('common.dessert')+': '+sm.desserts
-              %li.white=t('common.drink')+': '+sm.drinks
-              -if sm.bread_included
-                %li.white=t('common.bread')
+          -today_photo = s.today_photo
+          -if today_photo
+            =image_tag "/menus/"+today_photo.file_thumb
+          -else
+            -s.todaymenus.each do |sm|
+              %ul.menu
+                %li.menu-name=sm.name
+                -sm.menukinds.each do |smm|
+                  %li
+                    =smm.text
+                    %span.price=number_with_precision(smm.price)+'€'
+                -sm.courses.each do |smc|
+                  %li.white=smc.name+': '+smc.text
+                %li.white=t('common.dessert')+': '+sm.desserts
+                %li.white=t('common.drink')+': '+sm.drinks
+                -if sm.bread_included
+                  %li.white=t('common.bread')
 
 

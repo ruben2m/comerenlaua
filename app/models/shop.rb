@@ -3,6 +3,7 @@ class Shop < ActiveRecord::Base
   has_many :users, through: :manages
   has_many :menus
   has_many :days
+  has_many :photos
 
   def todaymenus
     menus = []
@@ -22,5 +23,9 @@ class Shop < ActiveRecord::Base
 
   def as_json(options={})
     super(:only => [:id, :title]);
+  end
+
+  def today_photo
+    self.photos.find_by_date(Date.today)
   end
 end

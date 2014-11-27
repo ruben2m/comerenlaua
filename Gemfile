@@ -36,3 +36,4 @@ group :production do
 end
 
 gem 'libv8', '=3.16.14.3'
+gem 'ImageResize'
