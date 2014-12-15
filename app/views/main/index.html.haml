@@ -1,4 +1,4 @@
-.row
+#grande.row
   -@shops.each do |s|
     .col-sm-4
       %figure.coffe-shop
@@ -23,4 +23,32 @@
                 -if sm.bread_included
                   %li.white=t('common.bread')
 
-
+#acordeon.row
+  -@shops.each do |s|
+    .panel.col-sm-4
+      -collapse_name = "collapse"+s.id.to_s
+      .shop-name
+        %a{"data-parent" => "#acordeon", "data-toggle" => "collapse", :href => "#"+collapse_name}=s.title
+      %div{id: collapse_name, class: "collapse"}
+        -today_photo = s.today_photo
+        -if today_photo
+          =image_tag "/menus/"+today_photo.file_thumb
+        -else
+          -if s.todaymenus.count == 0
+            %ul
+              %li
+                No se ha especificado el menú de hoy.
+          -else
+            -s.todaymenus.each do |sm|
+              %ul.menu
+                %li.menu-name=sm.name
+                -sm.menukinds.each do |smm|
+                  %li
+                    =smm.text
+                    %span.price=number_with_precision(smm.price)+'€'
+                -sm.courses.each do |smc|
+                  %li.white=smc.name+': '+smc.text
+                %li.white=t('common.dessert')+': '+sm.desserts
+                %li.white=t('common.drink')+': '+sm.drinks
+                -if sm.bread_included
+                  %li.white=t('common.bread')
