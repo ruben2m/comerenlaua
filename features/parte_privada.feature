@@ -18,7 +18,7 @@ Característica: Funcionamiento de la parte privada,
     Cuando accedo a petición de cafetería
     Y selecciono la cafetería "Don Jamón"
     Y el administrador acepta la gestión con "Don Jamón"
-    Y el usuario vuelve a identificarse
+    Cuando el usuario vuelve a identificarse
     Entonces debe aparecer la pantalla de selección de cafetería
     Cuando selecciono la cafetería "Don Jamón"
     Entonces accederá a la cafetería "Don Jamón"
