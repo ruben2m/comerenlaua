@@ -1,6 +1,6 @@
 #encoding: utf-8
 class AdminMailer < ActionMailer::Base
-  @correo = "admin@comerenlaua.es"
+  @correo = "admin@comerenlaua.hazteonline.es"
 
   default from: @correo
   default to: @correo

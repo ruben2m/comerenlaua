@@ -66,7 +66,7 @@ Rails.application.configure do
     :port                 => 25,
     :domain               => 'comerenlaua.hazteonline.es',
     :user_name            => 'admin@comerenlaua.hazteonline.es',
-    :password             => 'u@LAS$BANT4n',
+    :password             => 'TODO',
     :authentication       => :login,
     :enable_starttls_auto => false  }
 
